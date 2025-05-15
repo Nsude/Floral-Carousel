@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Montreal";
+  src: url("./assets/fonts/NeueMontreal-Regular.otf");
+  font-weight: 300;
+}
+
+:root {
+  font-family: "Montreal", Arial, Helvetica, sans-serif;
+
+  /* Color variables */
+  --myBlack: #000;
+  --myWhite: #FDFDFD;
+  --myGreen: #5DEA7C;
+
+  /* Typography */ 
+  --bodyCopy: 25px;
+  --smallText: 14px;
+  --title: 45px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}

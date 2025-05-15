@@ -1,0 +1,84 @@
+.wrapper {
+  background-color: var(--myBlack);
+  color: var(--myWhite);
+  height: 100vh;
+  width: 100%;
+  padding: 22px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+
+
+  .section_desc {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--smallText);
+    letter-spacing: 0.02ch; // 2%
+    position: absolute;
+    left: 35px;
+    top: 22px;
+    right: 35px;
+  }
+
+  .filler_texts {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .section_year {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .dev_cred {
+    opacity: .4;
+
+    span {
+      display: block;
+    }
+  }
+
+  .floral_nd_desc_container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .floral_container {
+    display: flex;
+    justify-content: center;
+    width: 70%;
+  }
+
+  .floral_desc_nd_nav {
+    width: 30%;
+
+    h2 {
+      font-weight: 300;
+      font-size: var(--title);
+      margin-bottom: 10px;
+    }
+
+    .client-title {
+      opacity: .4;
+      font-size: var(--smallText);
+    }
+
+    p {
+      margin-top: 25px;
+      font-size: var(--bodyCopy);
+      width: 80%;
+    }
+  }
+
+  .floral_nav {
+    position: absolute;
+    bottom: 37%;
+    display: flex;
+    column-gap: 15px;
+  }
+  
+}

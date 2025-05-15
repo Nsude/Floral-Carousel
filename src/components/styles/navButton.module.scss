@@ -1,0 +1,49 @@
+.wrapper {
+  height: 60px;
+  aspect-ratio: 1/1;
+  border: 1px solid rgba($color: #FDFDFD, $alpha: .4);
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  transition: background 250ms linear;
+
+  .icons_container {
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+
+    span {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &:hover {
+    background: var(--myGreen);
+    border: unset;
+
+    svg path {
+      stroke: var(--myBlack);
+    }
+
+  }
+
+  &[data-left="false"]:hover {
+    .icons_container {
+      transform: translate(100%);
+    }
+  }
+
+  &[data-left="false"] .icons_container span {
+    left: -100%;
+  }
+
+  &[data-left="true"] .icons_container span {
+    left: 100%;
+  }
+
+  &[data-left="true"]:hover {
+    .icons_container {
+      transform: translate(-100%);
+    }
+  }
+}
