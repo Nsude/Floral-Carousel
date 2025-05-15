@@ -54,6 +54,7 @@
   }
 
   .floral_desc_nd_nav {
+    margin-top: 100px;
     width: 30%;
 
     h2 {
@@ -62,7 +63,7 @@
       margin-bottom: 10px;
     }
 
-    .client-title {
+    .client_title {
       opacity: .4;
       font-size: var(--smallText);
     }
@@ -76,9 +77,9 @@
 
   .floral_nav {
     position: absolute;
-    bottom: 37%;
+    bottom: 30%;
     display: flex;
-    column-gap: 15px;
+    column-gap: 10px;
   }
   
 }

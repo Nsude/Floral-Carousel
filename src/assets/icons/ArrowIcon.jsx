@@ -13,6 +13,7 @@ const ArrowIcon = ({left = false}) => {
       <path
         d="M0.682922 8.65089H19.3171M19.3171 8.65089L11.9489 1.28279M19.3171 8.65089L11.9489 16.019"
         stroke="#FDFDFD"
+        strokeWidth={1.5}
       />
     </svg>
   );

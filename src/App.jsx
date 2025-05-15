@@ -1,8 +1,70 @@
+import { useRef, useState } from "react"
 import FloralCarousel from "./components/FloralCarousel"
 import NavButton from "./components/NavButton"
 import styles from "./styles.module.scss"
+import {testimonials} from "./components/DummyData";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
+import gsap from "gsap";
+import { CustomEase } from "gsap/all";
+
+gsap.registerPlugin(SplitText, CustomEase);
+export const myEase = CustomEase.create("custom", "0.76, 0, 0.24, 1");
 
 function App() {
+  const total = testimonials.length;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [allowNavigation, setAllowNavigation] = useState(true);
+  const [isNext, setIsNext] = useState(false);
+  const descTextsRef = useRef([]);
+
+  useGSAP(() => {
+    const texts = descTextsRef.current;
+    if (!texts) return;
+
+    texts.forEach(text => {
+      const split = SplitText.create(text, {type: "lines", autoSplit: true, mask: "lines"});
+      
+      gsap.from(split.lines, {
+        y: 40,
+        opacity: 0,
+        duration: .6,
+        ease: "power3.out"
+      })
+    })
+
+  }, [activeIndex])
+
+  const toggleAllowNavigation = () => {
+    setAllowNavigation(false);
+    setTimeout(() => {
+      setAllowNavigation(true);
+    }, 600)
+  }
+
+  const handleNext = () => {
+    if (!allowNavigation) return;
+    setIsNext(true);
+    toggleAllowNavigation();
+
+    if (activeIndex == total - 1) {
+      return setActiveIndex(0);
+    }
+
+    setActiveIndex(activeIndex + 1);
+  }
+
+  const handlePrev = () => {
+    if (!allowNavigation) return;
+    setIsNext(false);
+    toggleAllowNavigation();
+
+    if (activeIndex == 0) {
+      return setActiveIndex(total - 1)
+    }
+
+    setActiveIndex(activeIndex - 1);
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -26,23 +88,30 @@ function App() {
       <div className={styles.floral_nd_desc_container}>
         {/* florar Carousel */}
         <div className={styles.floral_container}>
-          <FloralCarousel />
+          <FloralCarousel 
+            testimonials={testimonials} 
+            activeIndex={activeIndex} 
+            isNext={isNext}/>
         </div>
 
         {/* Description & nav buttons */}
         <div className={styles.floral_desc_nd_nav}>
           <div className={styles.floral_desc}>
             <div>
-              <h2>Samantha Wheeler</h2>
-              <span className={styles.client_title}>CEO Dumb Broot</span>
+              <h2 ref={(el) => descTextsRef.current[0] = el}>{testimonials[activeIndex].name}</h2>
+              <span ref={(el) => descTextsRef.current[1] = el} className={styles.client_title}>{testimonials[activeIndex].title}</span>
             </div>
 
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus corrupti sunt ipsa quos laborum iusto cum a, sed nulla maiores, praesentium incidunt nemo consectetur adipisci illum vero! Aperiam, hic harum.</p>
+            <p ref={(el) => descTextsRef.current[2] = el}>{testimonials[activeIndex].review}</p>
           </div>
 
           <div className={styles.floral_nav}>
-            <NavButton left={true} />
-            <NavButton />
+            <div role="button" onClick={handlePrev}>
+              <NavButton left={true} />
+            </div>
+            <div role="button" onClick={handleNext}>
+              <NavButton />
+            </div>
           </div>
         </div>
 
