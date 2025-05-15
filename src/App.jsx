@@ -26,7 +26,7 @@ function App() {
       const split = SplitText.create(text, {type: "lines", autoSplit: true, mask: "lines"});
       
       gsap.from(split.lines, {
-        y: 40,
+        y: isNext ? 40 : -40,
         opacity: 0,
         duration: .6,
         ease: "power3.out"
