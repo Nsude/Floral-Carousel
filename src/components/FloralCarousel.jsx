@@ -39,10 +39,12 @@ const FloralCarousel = ({testimonials = [], activeIndex, isNext}) => {
           if (currentOpactiy < 0.1 && !prevImageReset) {
             prevImageReset = true;
             // reorder layers
-            layers.current = layers.current.map((zIndex, i) => i === prev ? 0 : zIndex + 1);
+            layers.current = layers.current.map((zIndex, i) => {
+              if (i === prev) return 0;
+              const increased = zIndex + 1;
+              return increased > total - 1 ? total - 1 : increased;
+            });
 
-            // ensure zIndexes stay within the range of the array
-            layers.current = layers.current.map(zIndex => zIndex % total);
 
             // reset the zIndex of all the images
             images.forEach((img, i) => tl.set(img, {zIndex: layers.current[i]}));
